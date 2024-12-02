@@ -1,0 +1,154 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  /* Define colors for different levels */
+  --level-0-color: #00ff00;
+  --level-1-color: #ff9900;
+  --level-2-color: #ff00ff;
+  --level-3-color: #00ffff;
+  --level-4-color: #ffff00;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 800px;
+  margin: 2rem;
+  width: 100%;
+}
+
+.text-manager {
+  width: 100%;
+}
+
+.input-section {
+  margin-bottom: 2rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  border: 1px solid #646cff;
+  background-color: #1a1a1a;
+  color: white;
+  font-size: 1em;
+}
+
+input:focus {
+  outline: none;
+  border-color: #535bf2;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.3);
+}
+
+.draggable-area {
+  min-height: 50px;
+  border: 2px dashed #646cff;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.draggable-item {
+  background-color: #1a1a1a;
+  border: 1px solid #646cff;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  cursor: move;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.draggable-item:hover {
+  background-color: #2a2a2a;
+}
+
+.draggable-item.dragging {
+  opacity: 0.5;
+}
+
+.drop-indicator {
+  height: 2px;
+  background-color: var(--level-0-color);
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: none;
+  pointer-events: none;
+  transform-origin: left;
+  transition: all 0.15s ease-out;
+  z-index: 1000;
+}
+
+.drop-indicator::before {
+  content: attr(data-level);
+  position: absolute;
+  left: -24px;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+  background-color: inherit;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.drop-indicator::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+.drop-indicator.level-0 {
+  background-color: var(--level-0-color);
+}
+
+.drop-indicator.level-1 {
+  background-color: var(--level-1-color);
+}
+
+.drop-indicator.level-2 {
+  background-color: var(--level-2-color);
+}
+
+.drop-indicator.level-3 {
+  background-color: var(--level-3-color);
+}
+
+.drop-indicator.level-4 {
+  background-color: var(--level-4-color);
+}
+
+.drop-indicator.visible {
+  display: block;
+  animation: scaleIn 0.2s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
